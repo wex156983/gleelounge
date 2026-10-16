@@ -111,13 +111,24 @@ they have no second phone.
 
 ---
 
-**Status:** preflight green, go received (Render). Next actions:
-1. Claude runs `git init/add/commit`; user creates the GitHub repo and pastes the URL.
-2. User follows the Render steps in **Production — B** and attaches the domain (**Domain**).
-3. User pastes the Render URL back here → live URL gets recorded.
+**Status: LIVE** on Render free tier.
 
-_Note:_ `npm install` reports **11 vulnerabilities (5 moderate, 6 high)**, mostly in
-dev/build tooling (esbuild, playwright). Run `npm audit` after launch and consider
-`npm audit fix` — review for breaking changes before forcing.
+- Live URL: **https://gleelounge.onrender.com** (2026-10-16)
+- Post-deploy smoke (live, same day):
+  - `GET /api/games` → **200** (games catalog returned)
+  - `GET /` → **200**, title `GleeLounge - play together on the big screen`, meta
+    description, `og:image` (`/og.png`), twitter:card, favicon + apple-touch-icon present
+  - `GET /privacy`, `/terms`, `/console` → **200** (Express SPA fallback works)
+  - `GET /socket.io/?EIO=4&transport=polling` → **200**, valid `sid`,
+    `upgrades: ["websocket"]` (WebSocket upgrade available)
+- Full interactive flow (create → join → play → reconnect) covered by the **26 e2e
+  tests** against the same server code locally.
 
-Live URL: _pending_.
+### Remaining (user)
+- [ ] Attach a custom domain (**Domain** section) — currently on `gleelounge.onrender.com`.
+- [ ] Have a lawyer review the privacy/terms copy in `src/screens/Legal.tsx` before
+      promoting the app.
+- [ ] Optional: upgrade to Render Starter (~$7/mo) for a persistent disk + no cold
+      start (`render.yaml` is ready).
+- [ ] Optional: `npm audit fix` (11 vulns, mostly dev tooling) — review for breaking
+      changes first.
