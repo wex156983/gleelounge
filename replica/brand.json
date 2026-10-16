@@ -1,0 +1,5 @@
+{
+  "avoid": ["AirConsole", "N-Dream"],
+  "domains": ["airconsole.com", "ndream.com"],
+  "colors": ["#adee00"]
+}

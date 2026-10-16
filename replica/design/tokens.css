@@ -1,0 +1,77 @@
+/* GleeLounge design tokens — generated from tokens.json
+   Components consume these via Tailwind theme aliases (bg-surface, text-muted...). */
+
+:root {
+  color-scheme: dark;
+
+  --color-bg: #0b0e14;
+  --color-bg-elevated: #121722;
+  --color-surface: #171d2b;
+  --color-surface-hover: #1f2739;
+  --color-border: #2a3347;
+  --color-border-input: #6b7894;
+  --color-text: #f2f5fa;
+  --color-text-muted: #9aa5bb;
+  --color-accent: #f72585;
+  --color-accent-hover: #ff4d94;
+  --color-on-accent: #1a0508;
+  --color-danger: #ff5c6c;
+  --color-on-danger: #1a0508;
+  --color-success: #3ddc97;
+  --color-on-success: #04160d;
+  --color-warning: #ffc857;
+  --color-on-warning: #1a1200;
+
+  --player-1: #ff6b6b;
+  --player-2: #4dabf7;
+  --player-3: #51cf66;
+  --player-4: #fcc419;
+  --player-5: #cc5de8;
+  --player-6: #ff922b;
+  --player-7: #20c997;
+  --player-8: #748ffc;
+
+  --font-sans: 'Fredoka', 'Nunito', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --text-xs: 0.75rem;
+  --text-xs--line: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line: 1.25rem;
+  --text-base: 1rem;
+  --text-base--line: 1.5rem;
+  --text-lg: 1.25rem;
+  --text-lg--line: 1.75rem;
+  --text-xl: 1.75rem;
+  --text-xl--line: 2.125rem;
+  --text-display: 2.5rem;
+  --text-display--line: 2.875rem;
+  --text-display-lg: 4rem;
+  --text-display-lg--line: 4.375rem;
+  --text-code: 7.5rem;
+  --text-code--line: 7.5rem;
+
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-pop: 0 16px 48px rgba(0, 0, 0, 0.55);
+  --shadow-glow: 0 0 24px rgba(247, 37, 133, 0.4);
+
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --layout-max-width: 75rem;
+  --layout-tv-safe-margin: 3rem;
+  --layout-header-height: 4rem;
+  --layout-phone-tap-min: 3.5rem;
+}

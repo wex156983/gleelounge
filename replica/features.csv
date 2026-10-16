@@ -1,0 +1,37 @@
+feature,area,priority,original,clone,notes
+Landing page with pitch and "Start playing" CTA,marketing,must,yes,yes,S01 built
+Create room and show 4-letter code + QR on big screen,lobby,must,yes,yes,"S02; QR is a decorative placeholder not real encoding — fixes.md fix #5 (scannable QR) is build-next"
+Join from phone with code + name + avatar,lobby,must,yes,yes,S03
+Player list with avatars and host badge on big screen,lobby,must,yes,yes,S02 avatars + a Host indicator (the big screen is the host; see bugs.md BUG-003)
+Game library grid with cover/title/players/genre,library,must,yes,yes,S05; 7 original games
+Filter by genre and player count,library,must,yes,yes,S05 genre chips + size buckets
+Game detail preview with description and Play,library,must,yes,yes,S06 modal
+Real-time input sync phone to screen (WebSockets),gameplay,must,yes,yes,Socket.io; smoke test passed
+In-game phone controls per genre (stick buttons text drawing tap),gameplay,must,yes,yes,S08; Joystick Dpad TextPad DrawPad TapGrid Reaction Sequence
+Countdown and round flow (3-2-1 GO rounds),gameplay,must,yes,yes,per-game rounds implemented
+Results screen with ranks scores and podium,results,must,yes,yes,S09 Podium + ScoreTable
+Rematch and back-to-lobby after game,results,must,yes,yes,S09
+Reconnect after phone drop with same code,reliability,must,yes,yes,"phone rejoins with stored playerId and the server replays game:started + the last state patch mid-game; verified by e2e f08-reconnect"
+Min/max player gating before starting a game,lobby,must,yes,yes,server enforces GAMES playersMin/Max and shows a clear error on the console (BUG-005)
+Solo play mode on games that support it,gameplay,should,yes,no,"games declare hasSolo; keyboard fallback not built — fixes.md fix #3 (top unmet ask: people play alone when bored)"
+Emoji reactions from phone during lobby and game,social,should,yes,yes,EmojiBar in lobby S04; not wired into in-game HUD
+Pause menu on big screen,gameplay,should,yes,no,"not built — fixes.md fix #4; original's forced ad breaks were a top hate, a host-controlled pause is the fix"
+Live score HUD during game,gameplay,should,yes,partial,each game renders its own HUD; shared component not extracted
+Room expiry TTL and cleanup,reliability,should,yes,yes,60s sweeper closes idle rooms 15min+
+Keyboard fallback controls on big screen for solo,gameplay,should,yes,no,not built — fixes.md fix #3 pairs with solo play row
+Player colors auto-assigned and consistent through session,lobby,should,yes,yes,colorIdx assigned on join
+Search in game library,library,could,yes,no,not built
+Favorite games per room session,library,could,yes,no,not built
+Spectator mode (join as watch-only),social,could,yes,no,not built
+Custom room rules (rounds time limit),gameplay,could,yes,no,not built
+Share link in addition to code,lobby,could,yes,partial,"QR encodes /join?room=CODE and the link prefills the code (BUG-010); QR is still a placeholder and there is no copy-link button — fixes.md fix #5"
+Sound effects and music per game,gameplay,could,yes,no,not built
+Ads and ad breaks,monetary,must,yes,skip,user wants zero ads
+Hero subscription and payments,billing,must,yes,skip,no billing in clone
+Licensed partner titles (Overcooked Hot Wheels Pac-Man Tetris UNO etc.),games,must,yes,skip,partner IP; original genre-alikes only
+Android TV / Fire TV native apps,platform,should,yes,skip,web only for now
+Accounts and cloud saves,accounts,should,yes,skip,rooms are ephemeral no login needed
+NES emulator / ROM loading,extra,must,yes,skip,legal risk
+Game ratings and reviews,library,could,yes,skip,needs accounts
+In-app purchases for game unlocks,monetary,could,yes,skip,all games free
+iPad or tablet works as the big screen,platform,must,no,no,"fixes.md fix #7: 12 reviews across 3 sources beg for this; clone is a web app so it should already work — verify with an iPad-viewport e2e and say so on the landing page"

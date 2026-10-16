@@ -1,0 +1,20 @@
+# Render Blueprint — GleeLounge
+# One long-running Node service. Rooms live in memory, so keep Instances = 1
+# (add sticky sessions + shared room state before scaling out).
+services:
+  - type: web
+    name: gleelounge
+    runtime: node
+    plan: starter            # paid; free tier has no disk and cold-starts
+    buildCommand: npm ci && npm run build
+    startCommand: npm start  # cross-env NODE_ENV=production tsx server/index.ts
+    healthCheckPath: /api/games
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data     # mounted persistent disk
+    disk:
+      name: gleelounge-data
+      mountPath: /var/data
+      sizeGB: 1
