@@ -37,12 +37,14 @@ the **user**; Claude only names the values and the commands. Repo already contai
    - Build: `npm ci && npm run build`
    - Start: `npm start` (runs `cross-env NODE_ENV=production tsx server/index.ts`)
    - Health Check Path: `/api/games`
-3. **Instance Type: Starter** (paid, ~$7/mo). **Free** tier has no persistent disk and
-   cold-starts after inactivity — bad for a live room of friends.
-4. **Disks**: the Blueprint attaches a 1 GB disk at `/var/data` and sets
-   `DATA_DIR=/var/data`, so the SQLite file survives redeploys. Confirm it shows.
-5. Env vars from the Blueprint: `NODE_ENV=production`, `DATA_DIR=/var/data`.
-   `PORT` is injected by Render and read by the server automatically.
+3. **Instance Type: Free** (chosen — no budget). Accepts cold start after idle (~50s)
+   and no persistent disk. Move to Starter (~$7/mo) later for a disk + no cold starts.
+4. **Disks**: none on Free (the Blueprint no longer attaches one). The SQLite file
+   (games + match history) is ephemeral and resets on deploy/restart — core game is
+   unaffected since games re-seed on boot and rooms are in memory.
+5. Env vars from the Blueprint: `NODE_ENV=production` only. `PORT` is injected by
+   Render and read by the server automatically. (No `DATA_DIR` on Free — the DB uses
+   the default ephemeral `./data`.)
 6. Leave **Instances = 1** (rooms are in memory; scaling out needs sticky sessions).
 7. Deploy. Wait for the health check to go green, then open the Render URL
    (`https://gleelounge-xxxx.onrender.com`).

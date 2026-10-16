@@ -1,20 +1,21 @@
-# Render Blueprint — GleeLounge
+# Render Blueprint — GleeLounge (free tier)
 # One long-running Node service. Rooms live in memory, so keep Instances = 1
 # (add sticky sessions + shared room state before scaling out).
+#
+# Free tier limits we accept for launch:
+#   - No persistent disk: the SQLite file (games catalog + match history) is
+#     ephemeral and resets on each deploy/restart. The core game is unaffected
+#     (games are re-seeded on boot; rooms are in memory anyway).
+#   - Cold start after idle (~50s) on the first request. Active play keeps it warm.
+# Upgrade to `plan: starter` later for a persistent disk and no cold starts.
 services:
   - type: web
     name: gleelounge
     runtime: node
-    plan: starter            # paid; free tier has no disk and cold-starts
+    plan: free
     buildCommand: npm ci && npm run build
     startCommand: npm start  # cross-env NODE_ENV=production tsx server/index.ts
     healthCheckPath: /api/games
     envVars:
       - key: NODE_ENV
         value: production
-      - key: DATA_DIR
-        value: /var/data     # mounted persistent disk
-    disk:
-      name: gleelounge-data
-      mountPath: /var/data
-      sizeGB: 1
